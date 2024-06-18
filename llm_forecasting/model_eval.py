@@ -4,7 +4,8 @@ import logging
 import time
 
 # Related third-party imports
-from langfuse.openai import openai
+import openai
+from langsmith import traceable
 
 import together
 import anthropic
@@ -31,8 +32,9 @@ if ANTHROPIC_KEY:
     anthropic_async_client = anthropic.AsyncAnthropic(api_key=ANTHROPIC_KEY)
 
 if OPENAI_KEY:
-    oai_async_client = openai.AsyncOpenAI(api_key=OPENAI_KEY)
-    oai = openai.OpenAI(api_key=OPENAI_KEY)
+    from langsmith.wrappers import wrap_openai
+    oai_async_client = wrap_openai(openai.AsyncOpenAI(api_key=OPENAI_KEY))
+    oai = wrap_openai(openai.OpenAI(api_key=OPENAI_KEY))
 
 if TOGETHER_KEY:
     together.api_key = TOGETHER_KEY
@@ -85,7 +87,7 @@ def get_response_from_oai_model(
     Returns:
         str: Response string from the API call.
     """
-
+    @traceable
     def api_call():
         """
         Make an API call to the OpenAI API, without retrying on failure.
@@ -252,6 +254,7 @@ def get_response_from_model(
         return "Not a valid model source."
 
 
+@traceable
 async def get_async_response(
     prompt,
     model_name="gpt-3.5-turbo-1106",
@@ -320,6 +323,7 @@ async def get_async_response(
             continue
 
 
+@traceable
 def get_openai_embedding(texts, model="text-embedding-3-large"):
     """
     Query OpenAI's text embedding model to get the embedding of the given text.

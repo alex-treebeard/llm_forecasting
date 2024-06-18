@@ -34,7 +34,9 @@ def concatenate_reasonings(reasonings):
         concat_reasonings.append(reason_str)
     return "---\n" + "\n\n-\n".join(concat_reasonings) + "\n---"
 
+from langsmith import traceable
 
+@traceable
 async def meta_reason(
     question,
     background_info,

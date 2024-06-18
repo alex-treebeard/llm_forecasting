@@ -1,7 +1,7 @@
 # Standard library imports
 import logging
 import json
-from langfuse.openai import openai
+import openai
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

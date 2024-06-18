@@ -2,7 +2,7 @@
 import asyncio
 from datetime import datetime
 import logging
-
+from langsmith import traceable
 # Related third-party imports
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -338,7 +338,7 @@ def get_question_article_embeddings(articles, question, background):
     a_embeddings = model_eval.get_openai_embedding(article_texts)
     return q_embedding, a_embeddings
 
-
+@traceable
 async def retrieve_summarize_and_rank_articles(
     question,
     background_info,
