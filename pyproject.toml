@@ -39,6 +39,8 @@ dependencies = [
     "pytest",
     "pytest-asyncio",
     "rich",
+    "lxml_html_clean",
+    "langfuse",
 ]
 
 [tool.setuptools.packages.find]

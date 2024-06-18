@@ -1,3 +1,5 @@
+import os
+
 AWS_ACCESS_KEY = ""
 AWS_SECRET_KEY = ""
 
@@ -11,7 +13,7 @@ GJOPEN_CSET_PASSWORD = ""
 
 NEWSCASTCHER_KEY = ""
 
-OPENAI_KEY = ""
+OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 ANTHROPIC_KEY = ""
 TOGETHER_KEY = ""
 GOOGLE_AI_KEY = ""

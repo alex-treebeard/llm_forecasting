@@ -3,7 +3,8 @@ import logging
 import sys
 
 # Related third-party imports
-import openai
+from langfuse.openai import openai
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

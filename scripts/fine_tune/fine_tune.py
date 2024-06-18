@@ -1,14 +1,13 @@
 # Standard library imports
 import logging
 import json
-import openai
-from openai import OpenAI
+from langfuse.openai import openai
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-client = OpenAI(
+client = openai.OpenAI(
     api_key="",
     organization="",
 )

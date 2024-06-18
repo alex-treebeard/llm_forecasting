@@ -4,7 +4,8 @@ import logging
 import time
 
 # Related third-party imports
-import openai
+from langfuse.openai import openai
+
 import together
 import anthropic
 import google.generativeai as google_ai
